@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pi-Monitor</title>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"
+	integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
+	crossorigin="anonymous"></script>
+<!-- jQuery UI -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+	function getImages() {
+		
+		jQuery("img").each(function(idx,item){
+			var i = jQuery(item);
+			//debugger;
+			
+			i.fadeOut(400, function() {
+				i.attr("src", "/getImg?fName="+i.attr("id")).fadeIn();
+			});
+			
+		});
+	}
+	
+	function getMsg(){
+		jQuery.get("/getMsg",function(data){
+			jQuery("#cody1").text(data[0]);
+			jQuery("#cody2").text(data[1]);
+			jQuery("#cody3").text(data[2]);
+			jQuery("#cody4").text(data[3]);
+			
+			//console.log(data);
+		});
+		
+	}
+	
+	jQuery(function() {
+		jQuery("button").button().click(function(evt) {
+			evt.preventDefault();
+			var id = jQuery(this).attr("id");
+			jQuery.get("/getBtn/"+id,function(){});
+			//alert("Hello!");
+		});
+		/*
+		jQuery(".btn").click(function(){
+			var id = jQuery(this).attr("id");
+			
+			jQuery.get("/getBtn/"+id,function(){});
+		});
+		*/
+		getImages();
+		setInterval(getImages, 3000);
+		setInterval(getMsg, 3000);
+	});
+</script>
+<style type="text/css">
+img {
+	width: 150px;
+	height: 150px;
+}
+
+td {
+	
+}
+#img {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<div id="img">
+		<table border="1">
+			<tr>
+				<td>
+					<img id="img1" src="">
+				</td>
+				<td>
+					<img id="img2" src="">
+				</td>
+			</tr>
+			<tr>
+				<td id="cody1">좌표1</td>
+				<td id="cody2">좌표2</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="btn" id="btn1" >확인</button>
+				</td>
+				<td>
+					<button class="btn" id="btn2" >확인</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="img3" src="">
+				</td>
+				<td>
+					<img id="img4" src="">
+				</td>
+			</tr>
+			<tr>
+				<td id="cody3">좌표3</td>
+				<td id="cody4">좌표4</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="btn" id="btn3" >확인</button>
+				</td>
+				<td>
+					<button class="btn" id="btn4" >확인</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

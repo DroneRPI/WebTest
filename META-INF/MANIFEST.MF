@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Implementation-Title: pi-monitor
+Implementation-Version: 0.0.1-SNAPSHOT
+Archiver-Version: Plexus Archiver
+Built-By: GgamMang
+Start-Class: com.geminit.PiMonitorApplication
+Implementation-Vendor-Id: com.geminit
+Spring-Boot-Version: 1.3.3.RELEASE
+Created-By: Apache Maven 3.3.3
+Build-Jdk: 1.8.0_65
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: org.springframework.boot.loader.JarLauncher
+
